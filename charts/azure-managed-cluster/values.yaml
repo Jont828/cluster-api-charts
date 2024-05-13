@@ -13,7 +13,6 @@ cluster:
 
   ## The resource group name for the nodes
   nodeResourceGroupName: ''
-  # nodeResourceGroupName: "{{ tpl .Values.cluster.name . }}nodes"
 
   ## The location of the cluster
   location: eastus
@@ -32,9 +31,7 @@ identity:
   clientID: ''
   tenantID: ''
   clusterIdentityName: cluster-identity
-  clusterIdentityNamespace: default
   clusterIdentitySecretName: cluster-identity-secret
-  clusterIdentitySecretNamespace: default
   clusterIdentitySecretValueB64: ''
   resourceID: ""
   type: ServicePrincipal
@@ -44,7 +41,7 @@ controlplane:
   ## SSH public key (must be valid)
 
   ## Kubernetes version
-  kubernetes_version: "v1.28.5"
+  kubernetes_version: "v1.28.9"
 
   ## Network policy, "calico" (for kubenet and azurecni) or "azure" (for azureCNI)
   networkPolicy: "calico"
@@ -101,21 +98,19 @@ controlplane:
   azureEnvironment: "AzurePublicCloud"
   kubeletUserAssignedIdentity: ""
   oidcIssuerProfile: ""
-  # disableLocalAccounts: false
   additionalTags:
   - key: test
     value: test
   dnsPrefix: ""
   virtualNetwork: {}
   disableLocalAccounts: false
-  # Only 1 Nodepool of mode System is allowed
 
 agentPools: []
 
 defaults:
   agentPool:
     mode: User
-    # TODO: should mode be set or required?
+    # Note: Only 1 Nodepool of mode System is allowed so we default to User.
     sku: Standard_DS4_v2
     nodecount: 1
     osDiskSizeGB: 32
