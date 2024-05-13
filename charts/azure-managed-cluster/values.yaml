@@ -32,7 +32,7 @@ identity:
   tenantID: ''
   clusterIdentityName: cluster-identity
   clusterIdentitySecretName: cluster-identity-secret
-  clusterIdentitySecretValueB64: ''
+  clusterIdentitySecretValue: ''
   resourceID: ""
   type: ServicePrincipal
 
